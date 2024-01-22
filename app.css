@@ -20,7 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 1px solid none;
+  border: 1px solid none; /*Correction: Cannot apply border to none*/
   border-radius: 10px;
   width: 375px; /* Locked */
   height: 610px;
@@ -104,6 +104,27 @@ a {
 a:hover {
   background-color: hsl(212, 21%, 14%);
 }
+
+/* The simple and correct way of centering the icon and text inside a button
+HTML
+<button class="button-add">
+    <img src="./images/icon-cart.svg" alt="">Add to Cart
+</button>
+
+CSS
+.button-add {
+    width: 100%;
+    padding: 14px 18px;
+    background-color: hsl(158, 36%, 37%);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+*/
 
 @media (min-width: 900px) {
   .container {
