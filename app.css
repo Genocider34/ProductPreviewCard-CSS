@@ -1,145 +1,104 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&display=swap");
 
-* {
-  box-sizing: border-box;
-  /* font-family: "Fraunces", serif; */
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+:root {
+  --clr-primary-400: hsl(158, 36%, 37%);
+  --clr-primary-500: hsl(158, 36%, 20%);
+  --clr-secondary-200: hsl(30, 38%, 92%);
+
+  --clr-neutral-900: hsl(212, 21%, 14%);
+  --clr-neutral-400: hsl(228, 12%, 48%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+
+  --ff-accent: "Montserrat", sans-serif;
+  --ff-base: "Fraunces", serif;
+
+  --fw-regular: 500;
+  --fw-bold: 700;
 }
+
+/* general styling */
 
 body {
-  background-color: hsl(30, 38%, 92%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  font-family: var(--ff-base);
+  font-weight: var(--fw-regular);
+  font-size: 0.875rem;
+  color: var(--clr-neutral-400);
+  background-color: var(--clr-secondary-200);
+
+  /* for this project only */
+  display: grid;
   min-height: 100vh;
+  place-content: center;
+  margin: 1rem;
 }
 
-.container {
+/* utilities */
+.flex-group {
   display: flex;
-  flex-direction: column;
-  background-color: white;
-  border: 1px solid none; /*Correction: Cannot apply border to none*/
-  border-radius: 10px;
-  width: 375px; /* Locked */
-  height: 610px;
-  max-width: 100%;
-}
-
-.img {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background: url("images/image-product-mobile.jpg") no-repeat center/cover;
-  height: 240px;
-  width: 100%;
-}
-
-.contents {
-  padding: 20px;
-}
-
-h2 {
-  letter-spacing: 2px;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: hsl(228, 12%, 48%);
-}
-
-h1 {
-  font-family: "Fraunces", serif;
-  font-size: 34px;
-  margin: 12px 0;
-}
-
-p {
-  color: hsl(228, 12%, 48%);
-  line-height: 1.5em;
-  margin-bottom: 20px;
-}
-
-.current-price {
-  font-family: "Fraunces", serif;
-  color: hsl(158, 36%, 37%);
-  font-size: 30px;
-  margin-right: 25px;
-}
-
-.old-price {
-  text-decoration: line-through;
-  color: hsl(228, 12%, 48%);
-}
-
-.current-price,
-.old-price {
-  vertical-align: middle;
-}
-
-.button {
-  margin-top: 20px;
-}
-
-a,
-.imgCart {
-  display: flex;
-  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   align-items: center;
 }
 
-.imgCart {
-  background: url("images/icon-cart.svg") no-repeat center/cover;
-  width: 18px;
-  height: 18px;
+/* product styles */
+.product {
+  --content-padding: 1.5rem;
+  --content-spacing: 1rem;
+
+  background-color: var(--clr-neutral-100);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
-a {
-  padding: 14px 18px;
-  background-color: hsl(158, 36%, 37%);
-  border-radius: 10px;
+.product__content {
+  display: grid;
+  gap: var(--content-spacing);
+  padding: var(--content-padding);
+}
+
+.product__category {
+  font-size: 0.8125rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.product__title {
+  font-size: 2rem;
+  font-family: var(--ff-accent);
+  color: var(--clr-neutral-900);
+}
+
+.product__price {
+  font-size: 2rem;
+  font-family: var(--ff-accent);
+  color: var(--clr-primary-400);
+}
+
+/* button */
+.button {
+  cursor: pointer;
   text-decoration: none;
-  color: white;
-  gap: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  padding: 0.75em 1.5em;
+  background-color: var(--clr-primary-400);
+  color: var(--clr-neutral-100);
+  font-weight: var(--fw-bold);
+  font-size: 0.925rem;
+  border-radius: 0.5rem;
 }
 
-a:hover {
-  background-color: hsl(212, 21%, 14%);
+.button:is(:hover, :focus) {
+  background-color: var(--clr-primary-500);
 }
 
-/* The simple and correct way of centering the icon and text inside a button
-HTML
-<button class="button-add">
-    <img src="./images/icon-cart.svg" alt="">Add to Cart
-</button>
-
-CSS
-.button-add {
-    width: 100%;
-    padding: 14px 18px;
-    background-color: hsl(158, 36%, 37%);
-    border-radius: 10px;
-    border: none;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-*/
-
-@media (min-width: 900px) {
-  .container {
-    flex-direction: row;
-    width: 600px;
-    height: 350px;
-  }
-
-  .img {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    width: 800px;
-    background: url("images/image-product-desktop.jpg") no-repeat center/cover;
-    height: 350px;
-  }
+.button[data-icon="shopping-cart"]::before {
+  content: "";
+  background-image: url("images/icon-cart.svg");
+  width: 15;
+  height: 16;
+  /* background-color: red; */
 }
